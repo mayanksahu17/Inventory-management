@@ -1,6 +1,6 @@
 import dbConnect from "@/lib/DbConnect";
 import { NextRequest, NextResponse } from "next/server";
-import WarehouseManager from "@/models/W_manager"; // Unused import?
+import InventoryManager from "@/models/I_manager"; // Import once
 import bcrypt from "bcryptjs"; // Corrected import for bcrypt
 
 export async function POST(req: NextRequest) {
@@ -25,8 +25,8 @@ export async function POST(req: NextRequest) {
     }
 
     // Check for duplicate email
-    const existingWarehouseManager = await WarehouseManager.findOne({    $or: [{ name }, { email }],});
-    if (existingWarehouseManager) {
+    const existingInventoryManager = await InventoryManager.findOne({    $or: [{ name }, { email }],});
+    if (existingInventoryManager) {
       return NextResponse.json({ message: "Email already exists" }, { status: 409 });
     }
 
@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
     const hashedPassword = await bcrypt.hash(password, saltRounds);
     console.log(email)
   
-    const warehouseManager = await WarehouseManager.create({
+    const inventoryManager = await InventoryManager.create({
       name,
       email:email,
       password: hashedPassword,
@@ -44,8 +44,8 @@ export async function POST(req: NextRequest) {
     console.log(email)
 
     return NextResponse.json({
-      message: "Warehouse manager account  created successfully",
-      warehouseManager,
+      message: "InventoryManager account  created successfully",
+      inventoryManager,
     });
   } catch (error) {
     console.error(error);

@@ -1,6 +1,6 @@
 import mongoose , {Document , Schema} from "mongoose";
 
-interface department extends Document {
+interface supplier extends Document {
     name: string;
     email: string;
     password : string;
@@ -9,7 +9,7 @@ interface department extends Document {
     location : string;
 }
 
-const DepartmentSchema : Schema<department> = new Schema({
+const cupplier : Schema<supplier> = new Schema({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
@@ -18,6 +18,6 @@ const DepartmentSchema : Schema<department> = new Schema({
   location: { type: String},
 });
 
-const Department = (mongoose.models.Department as mongoose.Model<department> ) ||   mongoose.model('Department', DepartmentSchema);
+const Supplier = (mongoose.models.Department as mongoose.Model<supplier> ) ||   mongoose.model('Supplier', cupplier);
 
- export default Department
+ export default Supplier

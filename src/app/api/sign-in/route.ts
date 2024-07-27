@@ -1,6 +1,6 @@
 import dbConnect from "@/lib/DbConnect";
 import { NextRequest, NextResponse } from "next/server";
-import WarehouseManager from "@/models/W_manager"; // Import once
+import InventoryManager from "@/models/I_manager"; // Import once
 import bcrypt from "bcryptjs";
 import jwt from 'jsonwebtoken';
 import cookie from 'cookie';
@@ -21,19 +21,19 @@ export async function POST(req: NextRequest) {
     console.log(email , password)
 
     // Find the user
-    const warehouseManager = await WarehouseManager.findOne({ email });
-    if (!warehouseManager) {
+    const inventoryManager = await InventoryManager.findOne({ email });
+    if (!inventoryManager) {
       return NextResponse.json({ message: "Invalid credentials" }, { status: 401 });
     }
 
     // Compare passwords
-    const isPasswordMatch = await bcrypt.compare(password, warehouseManager.password);
+    const isPasswordMatch = await bcrypt.compare(password, inventoryManager.password);
     if (!isPasswordMatch) {
       return NextResponse.json({ message: "Invalid credentials" }, { status: 401 });
     }
 
     // Generate JWT token
-    const token = jwt.sign({ id: warehouseManager._id }, process.env.JWT_SECRET as string, { expiresIn: '1h' });
+    const token = jwt.sign({ id: inventoryManager._id }, process.env.JWT_SECRET as string, { expiresIn: '1h' });
 
     const response = NextResponse.json({
       success: true,

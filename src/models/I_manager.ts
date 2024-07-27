@@ -1,7 +1,7 @@
 import mongoose, { Document, Schema, Model } from 'mongoose';
 
-// Define the WarehouseDetails interface extending Document
-interface warehouseManager extends Document {
+// Define the inventoryDetails interface extending Document
+interface inventoryManager extends Document {
   email: string;
   password : string;
   location: string;
@@ -9,8 +9,8 @@ interface warehouseManager extends Document {
   items: mongoose.Types.ObjectId[]; // Array of ObjectId references to the Item model
 }
 
-// Define the schema for the WarehouseDetails model
-const warehouseDetailsSchema = new Schema<warehouseManager>({
+// Define the schema for the inventoryDetails model
+const inventoryDetailsSchema = new Schema<inventoryManager>({
   email : {type : String , required : true , unique:true},
   password : {type : String , required : true},
   location: { type: String, required: true },
@@ -19,7 +19,7 @@ const warehouseDetailsSchema = new Schema<warehouseManager>({
 });
 
 
-const WarehouseManager = (mongoose.models.WarehouseManager as mongoose.Model<warehouseManager>) ||  mongoose.model('WarehouseManager', warehouseDetailsSchema);
+const InventoryManager = (mongoose.models.InventoryManager as mongoose.Model<inventoryManager>) ||  mongoose.model('InventoryManager', inventoryDetailsSchema);
 
 
-export default WarehouseManager;
+export default InventoryManager;
