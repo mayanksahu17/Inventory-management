@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import mongoose from "mongoose";
 import dbConnect from "@/lib/DbConnect";
-import { Inventory } from "@/models/Invenroty";
+import { Inventory } from "@/models/Inventory";
 import Item from "@/models/Item";
 
 export async function POST(req: NextRequest) {

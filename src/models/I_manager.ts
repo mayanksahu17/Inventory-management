@@ -1,13 +1,14 @@
 import mongoose, { Document, Schema, Model } from 'mongoose';
-
+import {notification} from './Notifications';
 // Define the inventoryDetails interface extending Document
 interface inventoryManager extends Document {
   email: string;
   password : string;
   location: string;
   name: string;
-  items: mongoose.Types.ObjectId[]; // Array of ObjectId references to the Item model
-}
+  items: mongoose.Types.ObjectId[];
+  notifications :[any];
+ }
 
 // Define the schema for the inventoryDetails model
 const inventoryDetailsSchema = new Schema<inventoryManager>({
@@ -15,7 +16,8 @@ const inventoryDetailsSchema = new Schema<inventoryManager>({
   password : {type : String , required : true},
   location: { type: String, required: true },
   name: { type: String, required: true },
-  items: [{ type: Schema.Types.ObjectId, ref: 'Item' }]
+  items: [{ type: Schema.Types.ObjectId, ref: 'Item' }],
+  notifications : [{type : Schema.Types.ObjectId , ref : 'Notification'}]
 });
 
 

@@ -1,24 +1,27 @@
 import mongoose, { Document, Schema, Model } from 'mongoose';
 
 // Define the Notification interface extending Document
- export interface notification extends Document {
-  state: string;
+export interface notification extends Document {
   id: string;
   sender: string;
-  receiver: string;
   time: Date;
+  message: string;
+  mode: string;
+  acceptedBy: string;
+  isAccepted: boolean;
 }
 
 // Define the schema for the Notification model
 const notificationSchema = new Schema<notification>({
-  state: { type: String, required: true },
-  id: { type: String, required: true },
   sender: { type: String, required: true },
-  receiver: { type: String, required: true },
-  time: { type: Date, required: true }
+  time: { type: Date, default: Date.now },
+  message: { type: String, required: true },
+  mode: { type: String,  required: true }, // Define   allowed modes
+  acceptedBy: { type: String },
+  isAccepted: { type: Boolean, default: false },
 });
 
+notificationSchema.index({ createdAt: -1 }); // Index for efficient querying
 
-
-const Notification = (mongoose.models.Warehouse as mongoose.Model<notification>) ||  mongoose.model('Notification', notificationSchema);
+const Notification = (mongoose.models.Notification as mongoose.Model<notification>) || mongoose.model('Notification', notificationSchema);
 export default Notification;
