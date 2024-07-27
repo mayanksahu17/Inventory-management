@@ -1,7 +1,6 @@
 import dbConnect from "@/lib/DbConnect";
 import Admin from "@/models/Admin";
 import { NextRequest, NextResponse } from "next/server";
-import WarehouseManager from "@/models/W_manager"; // Unused import?
 import bcrypt from "bcryptjs"; // Corrected import for bcrypt
 
 export async function POST(req: NextRequest) {
