@@ -22,9 +22,7 @@ const Navbar = () => {
           <Link href="/admin/non-perishable/construction" className="hover:underline" prefetch={false}>
             Construction
           </Link>
-          <Link href="#" className="hover:underline" prefetch={false}>
-            Shipping
-          </Link>
+         
           <Link href="#" className="hover:underline" prefetch={false}>
             Inventory
           </Link>

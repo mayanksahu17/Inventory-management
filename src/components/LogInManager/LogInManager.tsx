@@ -23,6 +23,7 @@ const LogInManagerBlock = () => {
         email: data.emailOrNumber,
         password: data.password
       };
+      
 
       router.push("/admin")
       const response = await axios.post('/api/sign-in', formattedData);
