@@ -1,6 +1,5 @@
 'use client'
 import React from 'react'
-import Image from 'next/image'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import Link from 'next/link';
@@ -22,7 +21,7 @@ const LogInSupplierBlock = () => {
       <div className='mt-1 min-h-[77vh] w-full pb-10'>
         <div className="flex flex-col lg:flex-row gap-4 pt-10 justify-evenly items-center w-full">
           <div className='flex flex-col px-4 lg:px-16 w-full mt-10'>
-            <h1 className='font-medium text-3xl text-black text-center'>Log in to Dolphine</h1>
+            <h1 className='font-medium text-3xl text-black text-center'>Log in to Montery</h1>
             <p className='text-sm font-medium mt-4 ml-1 text-black text-center pb-4'>Enter your details below</p>
 
             <Formik
