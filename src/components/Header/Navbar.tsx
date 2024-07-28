@@ -1,130 +1,78 @@
-"use client"
-import { RiLogoutCircleRLine } from "react-icons/ri";
-import * as React from "react"
-import Link from "next/link"
+"use client";
+import React from 'react';
+import Link from 'next/link';
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 
-import { cn } from "@/lib/utils"
-// import { Icons } from "@/components/icons"
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu"
-
-const components: { title: string; href: string; description: string }[] = [
-  {
-    title: "Alert Dialog",
-    href: "/docs/primitives/alert-dialog",
-    description:
-      "A modal dialog that interrupts the user with important content and expects a response.",
-  },
-  {
-    title: "Hover Card",
-    href: "/docs/primitives/hover-card",
-    description:
-      "For sighted users to preview content available behind a link.",
-  },
-  {
-    title: "Progress",
-    href: "/docs/primitives/progress",
-    description:
-      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
-  },
-  {
-    title: "Scroll-area",
-    href: "/docs/primitives/scroll-area",
-    description: "Visually or semantically separates content.",
-  },
-  {
-    title: "Tabs",
-    href: "/docs/primitives/tabs",
-    description:
-      "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
-  },
-  {
-    title: "Tooltip",
-    href: "/docs/primitives/tooltip",
-    description:
-      "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
-  },
-]
-
-export default function NavigationMenuDemo() {
+const Navbar = () => {
   return (
-    <>
-    <div className="flex items-center justify-around mt-2 p-4 border">
-        <div>
-          <Link href={'/'}>
-          <h1 className="text-2xl font-bold">Montary Portal</h1>
+    <div>
+      <header className="bg-primary text-primary-foreground py-4 px-6 flex items-center justify-between">
+        <Link href="#" className="flex items-center gap-2" prefetch={false}>
+          <WarehouseIcon className="w-6 h-6" />
+          <span className="text-lg font-bold">Montery Warehouse</span>
+        </Link>
+        <nav className="hidden md:flex items-center gap-6">
+          <Link href="/admin/perishable/food" className="hover:underline" prefetch={false}>
+            Food
           </Link>
-        </div>
-        <div>
-    <NavigationMenu>
-      <NavigationMenuList>
-        
-        <NavigationMenuItem>
-        <Link href="/admin" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Admin
-            </NavigationMenuLink>
+          <Link href="/admin/non-perishable/waste" className="hover:underline" prefetch={false}>
+            Waste
           </Link>
-        </NavigationMenuItem>
-
-        <NavigationMenuItem>
-          <Link href="/docs" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Documentation
-            </NavigationMenuLink>
+          <Link href="/admin/non-perishable/construction" className="hover:underline" prefetch={false}>
+            Construction
           </Link>
-        </NavigationMenuItem>
-
-        <NavigationMenuItem>
-          <Link href="/contact" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Contact
-            </NavigationMenuLink>
+          <Link href="#" className="hover:underline" prefetch={false}>
+            Shipping
           </Link>
-        </NavigationMenuItem>
-      </NavigationMenuList>
-    </NavigationMenu>
+          <Link href="#" className="hover:underline" prefetch={false}>
+            Inventory
+          </Link>
+        </nav>
+        <Button variant="outline" className="md:hidden">
+          <MenuIcon className="w-5 h-5" />
+          <span className="sr-only">Toggle Menu</span>
+        </Button>
+      </header>
     </div>
-    <div className="text-sm font-bold flex flex-row items-center gap-2">
-    <Link href={'/logout'}>
-    <RiLogoutCircleRLine className="h-6 w-6"/>
-       {/* <div className="text-sm">log out</div> */}
-    </Link>
-    </div>
-    </div>
-    </>
-  )
-}
+  );
+};
 
-const ListItem = React.forwardRef<
-  React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a">
->(({ className, title, children, ...props }, ref) => {
-  return (
-    <li>
-      <NavigationMenuLink asChild>
-        <a
-          ref={ref}
-          className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-            className
-          )}
-          {...props}
-        >
-          <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-            {children}
-          </p>
-        </a>
-      </NavigationMenuLink>
-    </li>
-  )
-})
-ListItem.displayName = "ListItem"
+const WarehouseIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+  <svg
+    {...props}
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M22 8.35V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8.35A2 2 0 0 1 3.26 6.5l8-3.2a2 2 0 0 1 1.48 0l8 3.2A2 2 0 0 1 22 8.35Z" />
+    <path d="M6 18h12" />
+    <path d="M6 14h12" />
+    <rect width="12" height="12" x="6" y="10" />
+  </svg>
+);
+
+const MenuIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+  <svg
+    {...props}
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M4 6h16M4 12h16M4 18h16" />
+  </svg>
+);
+
+export default Navbar;

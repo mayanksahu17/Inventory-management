@@ -8,7 +8,7 @@ const page = () => {
     <div>
       <WareHouseBlock/>
     </div>
-  )
+  ) 
 }
 
 export default page

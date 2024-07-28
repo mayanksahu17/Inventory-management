@@ -77,17 +77,12 @@ const  SignUpSupplierBlock = () => {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full px-2 py-2 bg-brand-color-300 text-white font-bold transition-all duration-100 ease-in hover:ease-out hover:bg-brand-color-300 focus:outline-none focus:shadow-outline rounded-md"
+                      className="w-full px-2 py-2 bg-brand-color-300 text-black bg-gray-400 font-bold transition-all duration-100 ease-in hover:ease-out hover:bg-brand-color-300 focus:outline-none focus:shadow-outline rounded-md"
                     >
                       Create Account
                     </button>
                   </div>
-                  <div className='px-2 py-2 border rounded-md hover:cursor-pointer'>
-                    <div className='flex items-center justify-center gap-x-6'>
-                      <FcGoogle className='w-8 h-8'/>
-                      <p className='text-sm text-black'>Sign Up with Google</p>
-                    </div>
-                  </div>
+                 
                 </form>
               )}
             </Formik>
