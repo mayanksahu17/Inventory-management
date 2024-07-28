@@ -23,6 +23,11 @@ const Hero = () => {
               Sign up as a Manager
               </Link>
             </div>
+            <div className='p-8 w-[78%] bg-gradient-to-r from-green-500 to-green-700 text-white rounded-lg shadow-md transition-transform transform hover:scale-105'>
+              <Link href={'/Login-admin'} className='text-lg font-semibold'>
+              Sign up as a Admin
+              </Link>
+            </div>
           </div>
         </div>
       </div>

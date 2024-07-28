@@ -2,8 +2,8 @@
 import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 // import Button from '@/components/ui/Button';
 import {
   RenderInputField,
@@ -17,7 +17,10 @@ const validationSchema = Yup.object({
 });
 
 const LogInSupplierBlock = () => {
-  const router = useRouter()
+    const router = useRouter()
+    const handle = ()=>{
+        router.push("/admin")
+    }
   return (
     <>
       <div className='mt-1 min-h-[77vh] w-full pb-10'>
@@ -64,8 +67,8 @@ const LogInSupplierBlock = () => {
 
                   <div className='flex justify-between items-center gap-x-6 text-md p-2'>
                     <button
-                      // type="submit"
-                      onClick={()=>{router.push("/supplier")}}
+                    //   type="submit"
+                      onClick={handle}
                       disabled={isSubmitting}
                       className='hover:cursor-pointer font-semibold p-2 px-2 rounded-md bg-blue-500 text-white'>
                       Login

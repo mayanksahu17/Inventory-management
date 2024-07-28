@@ -24,11 +24,11 @@ const LogInManagerBlock = () => {
         password: data.password
       };
 
+      router.push("/admin")
       const response = await axios.post('/api/sign-in', formattedData);
       // toast.success('Login successful!');
       console.log('Login successful:', response.data);
       localStorage.setItem("token", response.data?.token)
-      router.push("/warehouse")
       // Optionally handle success, like redirecting or showing a success message
     } catch (error) {
       toast.error('Error signing in. Please try again.');
@@ -85,6 +85,7 @@ const LogInManagerBlock = () => {
                 <div className='flex justify-between items-center gap-x-6 text-md p-2'>
                   <button
                     type="submit"
+                    // onChange={handle}
                     disabled={isSubmitting}
                     className='hover:cursor-pointer font-semibold p-2 px-2 rounded-md bg-blue-500 text-white'>
                     Login
