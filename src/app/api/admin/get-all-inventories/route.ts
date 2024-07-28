@@ -3,12 +3,13 @@ import dbConnect from "@/lib/DbConnect";
 import { NextResponse , NextRequest } from "next/server";
 import mongoose from "mongoose";
 
-export async function GET(req: NextRequest) {
+export async function POST(req: NextRequest) {
     try {
       await dbConnect();
+      const {dept} =  await req.json()
   
   
-      const inventories = await Inventory.find()
+      const inventories = await Inventory.find( {department : dept})
  
   
       return NextResponse.json({ inventories });

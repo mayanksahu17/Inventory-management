@@ -9,6 +9,7 @@ export interface notification extends Document {
   mode: string;
   acceptedBy: string;
   isAccepted: boolean;
+  quantity : Number;
 }
 
 // Define the schema for the Notification model
@@ -19,6 +20,7 @@ const notificationSchema = new Schema<notification>({
   mode: { type: String,  required: true }, // Define   allowed modes
   acceptedBy: { type: String },
   isAccepted: { type: Boolean, default: false },
+  quantity: {type: Number , required : true} 
 });
 
 notificationSchema.index({ createdAt: -1 }); // Index for efficient querying

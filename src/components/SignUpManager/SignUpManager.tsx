@@ -19,6 +19,8 @@ const validationSchema = Yup.object({
 
 const  SignUpManagerBlock = () => {
 
+  
+
   return (
     <>
       <div className='mt-1 w-full pb-10'>

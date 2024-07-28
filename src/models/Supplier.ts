@@ -18,6 +18,6 @@ const cupplier : Schema<supplier> = new Schema({
   location: { type: String},
 });
 
-const Supplier = (mongoose.models.Department as mongoose.Model<supplier> ) ||   mongoose.model('Supplier', cupplier);
+const Supplier = (mongoose.models.Supplier as mongoose.Model<supplier> ) ||   mongoose.model('Supplier', cupplier);
 
  export default Supplier

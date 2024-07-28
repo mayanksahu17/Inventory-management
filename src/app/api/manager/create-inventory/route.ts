@@ -5,11 +5,12 @@ import { Inventory } from "@/models/Inventory";
 
 export async function POST(req:NextRequest) {
 
-    const { name , location  } = await  req.json()
+    const { name , location , department  } = await  req.json()
      await dbConnect()
      const inventory  = await  Inventory.create({
         name ,
-        location 
+        location ,
+        department
      })  
      console.log(inventory);
      

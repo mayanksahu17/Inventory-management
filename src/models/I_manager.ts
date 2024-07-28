@@ -1,5 +1,6 @@
 import mongoose, { Document, Schema, Model } from 'mongoose';
 import {notification} from './Notifications';
+import { string } from 'yup';
 // Define the inventoryDetails interface extending Document
 interface inventoryManager extends Document {
   email: string;
@@ -8,6 +9,7 @@ interface inventoryManager extends Document {
   name: string;
   items: mongoose.Types.ObjectId[];
   notifications :[any];
+  department : any
  }
 
 // Define the schema for the inventoryDetails model
@@ -17,7 +19,8 @@ const inventoryDetailsSchema = new Schema<inventoryManager>({
   location: { type: String, required: true },
   name: { type: String, required: true },
   items: [{ type: Schema.Types.ObjectId, ref: 'Item' }],
-  notifications : [{type : Schema.Types.ObjectId , ref : 'Notification'}]
+  notifications : [{type : Schema.Types.ObjectId , ref : 'Notification'}],
+  department : {type : String }
 });
 
 

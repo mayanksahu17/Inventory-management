@@ -6,8 +6,8 @@ export interface item extends Document {
   category: string;
   expiryDate: Date;
   quantity: number;
-  receiver: string;
   minQuantity: number;
+  type : String
 }
 
 const itemSchema = new Schema<item>({
@@ -15,8 +15,8 @@ const itemSchema = new Schema<item>({
   category: { type: String, required: true },
   expiryDate: { type: Date, required: true },
   quantity: { type: Number, required: true },
-  receiver: { type: String, required: true },
-  minQuantity: { type: Number, required: true }
+  minQuantity: { type: Number, required: true },
+  type: { type: String, required: true }
 });
 
 // Create the Item model

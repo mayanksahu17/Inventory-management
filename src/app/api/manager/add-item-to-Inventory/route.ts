@@ -14,12 +14,12 @@ export async function POST(req: NextRequest) {
             category,
             expiryDate,
             quantity,
-            receiver,
             minQuantity,
+            type
         } = await req.json();
 
         // Input validation (optional but recommended)
-        if (!inventoryName || !name || !category || !expiryDate || !quantity || !receiver || !minQuantity) {
+        if (!inventoryName || !name || !category || !expiryDate || !quantity || !minQuantity ||!type) {
             return NextResponse.json({
                 success: false,
                 message: "Missing required fields",
@@ -40,8 +40,8 @@ export async function POST(req: NextRequest) {
             category,
             expiryDate,
             quantity,
-            receiver,
             minQuantity,
+            type
         });
 
         inventory.item.push(item); // Assuming items is an array in Inventory schema

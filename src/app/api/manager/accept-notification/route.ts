@@ -2,6 +2,8 @@ import { NextResponse, NextRequest } from "next/server";
 import dbConnect from "@/lib/DbConnect";
 import mongoose from "mongoose";
 import Notification from "@/models/Notifications";
+import Item from "@/models/Item";
+import quantityManager from "../quantity-manager/route";
 import { jwtVerify } from "jose";
 import InventoryManager from "@/models/I_manager";
 
@@ -29,11 +31,15 @@ export async function POST(req: NextRequest) {
     // Mark the notification as accepted
     notification.isAccepted = true;
     const notificationSaved = await notification.save();
-
     
-    const noti = notificationSaved ? {} : {};
     
-
+    if(notification.isAccepted){
+        quantityManager(notification)
+    }
+    else{
+        return null
+    }
+    
     // Return a successful response
     return NextResponse.json({ message: "Notification accepted" });
 }

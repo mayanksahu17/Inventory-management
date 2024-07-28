@@ -1,13 +1,13 @@
 import dbConnect from "@/lib/DbConnect";
+import Supplier from "@/models/Supplier";
 import { NextRequest, NextResponse } from "next/server";
-import InventoryManager from "@/models/I_manager"; // Import once
 import bcrypt from "bcryptjs"; // Corrected import for bcrypt
 
 export async function POST(req: NextRequest) {
   try {
     await dbConnect();
 
-    const { name, email, password , location , department  } = await req.json();
+    const { name, email, password  } = await req.json();
 
     // Input validation
     if (!name || !email || !password ) {
@@ -25,28 +25,27 @@ export async function POST(req: NextRequest) {
     }
 
     // Check for duplicate email
-    // const existingInventoryManager = await InventoryManager.findOne({    $or: [{ name }, { email }],});
-    // if (existingInventoryManager) {
-    //   return NextResponse.json({ message: "Email already exists" }, { status: 409 });
-    // }
+    const existingWarehouseManager = await Supplier.findOne({    $or: [{ name }, { email }],});
+    if (existingWarehouseManager) {
+      return NextResponse.json({ message: "Email already exists" }, { status: 409 });
+    }
 
     const saltRounds = 12;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
     console.log(email)
   
-    const inventoryManager = await InventoryManager.create({
+    const warehouseManager = await Supplier.create({
       name,
       email:email,
       password: hashedPassword,
-      location,
-      department
+      
     });
 
     console.log(email)
 
     return NextResponse.json({
-      message: "InventoryManager account  created successfully",
-      inventoryManager,
+      message: "Supplier account  created successfully",
+      Supplier,
     });
   } catch (error) {
     console.error(error);

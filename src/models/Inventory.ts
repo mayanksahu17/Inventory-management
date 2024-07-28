@@ -7,6 +7,8 @@ interface inventory extends Document {
   name: string;
   item : [item];
   location : String;
+  quantity : Number;
+  department : String;
 }
 
 
@@ -14,7 +16,9 @@ interface inventory extends Document {
 const inventorySchema : Schema<inventory> = new Schema({
   name : {  type : String},
   item: [{ type:  Schema.Types.ObjectId, ref: 'Item' }],
-  location : {type : String}
+  location : {type : String},
+  quantity : {type : String},   
+  department : {type : String},
 });
 
 
