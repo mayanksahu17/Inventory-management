@@ -39,6 +39,8 @@ export async function POST(req: NextRequest) {
       success: true,
       message: "Signed in successfully!",
       token,
+    },{
+      status : 200
     });
 
     response.headers.set('Set-Cookie', cookie.serialize('token', token, {
